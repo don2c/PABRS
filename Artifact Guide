@@ -1,0 +1,32 @@
+# Artifact Guide
+
+## Environment
+
+- Python 3.11+
+- `pip install -r requirements.txt`
+
+## Entry Point
+
+```bash
+python scripts/run_all.py --output results
+```
+
+## Generated Files
+
+- `benchmark_results.csv` main benchmark table
+- `attack_results.csv` attack rejection table
+- `summary.md` concise findings
+- `plots/` figures for reviewer inspection
+
+## Mapping from Claims to Scripts
+
+| Claim | Source |
+|---|---|
+| valid-proof acceptance and invalid-proof rejection | `attack_results.csv` |
+| signing and verification runtime trends | `benchmark_results.csv` and `plots/` |
+| proof-size growth | `benchmark_results.csv` and `plots/` |
+| reproducibility | fixed seed in `scripts/run_all.py` |
+
+## Notes
+
+The artifact uses a functional emulator. It does not expose signer identity in the public proof object. It does bind proofs to descriptor and request context and rejects replay through nonce tracking.
